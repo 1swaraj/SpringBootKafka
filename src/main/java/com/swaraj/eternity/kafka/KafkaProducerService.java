@@ -19,7 +19,7 @@ public class KafkaProducerService
 	public void sendMessage(String message) 
 	{
 		logger.info(String.format("Message sent -> %s", message));
-		this.kafkaTemplate.send("dummy", message);
+		this.kafkaTemplate.send("message", message);
 	}
 	
 	public void saveCreateUserLog(KafkaData user) 

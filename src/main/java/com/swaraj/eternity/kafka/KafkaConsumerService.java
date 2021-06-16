@@ -9,12 +9,12 @@ import org.springframework.stereotype.Service;
 public class KafkaConsumerService {
 	private final Logger logger = LoggerFactory.getLogger(KafkaConsumerService.class);
 
-	@KafkaListener(topics = "dummy", groupId = "swaraj")
+	@KafkaListener(topics = "message")
 	public void consume(String message) {
 		logger.info(String.format("Message recieved -> %s", message));
 	}
 
-	@KafkaListener(topics = "user", groupId = "swaraj")
+	@KafkaListener(topics = "user")
 	public void consume(KafkaData user) {
 		logger.info(String.format("User created -> %s", user));
 	}

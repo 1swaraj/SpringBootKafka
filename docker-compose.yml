@@ -12,14 +12,16 @@ services:
       KAFKA_ADVERTISED_HOST_NAME: 127.0.0.1
       KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
       KAFKA_AUTO_CREATE_TOPICS_ENABLE: 'false'
-  mongodb:
-    image: mongo
-    container_name: mongodb
+      KAFKA_CREATE_TOPICS: "message:1:1,user:1:1"
+  mongodb_container:
+    image: mongo:latest
     environment:
-      - PUID=1000
-      - PGID=1000
-    volumes:
-      - '/home/swaraj/mongodb/database:/data/db'
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: rootpassword
+      MONGO_INITDB_DATABASE: mongo
     ports:
-      - '27017:27017'
-    restart: unless-stopped
+      - 27017:27017
+    volumes:
+      - mongodb_data_container:/data/db
+volumes:
+  mongodb_data_container:
